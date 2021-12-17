@@ -10,17 +10,15 @@ public class Canal {
 	private ArrayList<Noticia> noticias;
 	
 	
-	public Canal (String name,String categoria) {
+	public Canal (String name) {
         this.nombre = name;
-        this.categoria=categoria;
+
         this.noticias = new ArrayList<Noticia>();
 	}
 	public String getNombre() {
 		return this.nombre;
 	}
-	public String getCategoria() {
-		return this.categoria;
-	}
+
 	
 	public ArrayList<Noticia> getNoticias(){
 		return this.noticias;
