@@ -7,7 +7,7 @@ public class Usuario {
 	private Boolean puedeEscribir;
 	private ListaNoticias noticiasVistas;
 	private ListaNoticias noticiasNoVistas;
-	private String[] notificacionCanalCerrado
+	private String[] notificacionCanalCerrado;
 	private ListaCanales suscripciones;
 	
 	public Usuario(String nombre,String contrasena,Boolean esAdmin,Boolean puedeEscribir) {
