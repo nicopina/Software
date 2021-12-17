@@ -1,5 +1,6 @@
 package Logica;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import Dominio.*;
@@ -11,5 +12,7 @@ public interface SistemaNoticias {
 	public void verNoticias(ListaNoticias noticias);
 	
 	public void enviarNoticia(String titulo, String texto, ListaCanales canales);
+	
+	public ArrayList<Noticia> filtrarNoticia(ArrayList<Noticia> listaNoticias, ListaCanales canales);
 
 }
