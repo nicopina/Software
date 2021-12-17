@@ -83,10 +83,10 @@ public class SistemaNoticiasImpl {
 					//Vemos si es que la entrada es un indice valido de alguna noticia.
 					try {
 						int indice = Integer.parseInt(opcionEntrada);
-						if (indice >= 0 && indice < listaNoticiasUsuario.size()) {
+						if (indice >= 0 && indice < noticiasMostrar.size()) {
 							System.out.println("Abriendo noticia...");
 							System.out.println("---------------------------------");
-							Noticia noticiaSeleccionada = listaNoticiasUsuario.get(indice);
+							Noticia noticiaSeleccionada = noticiasMostrar.get(indice);
 							System.out.println(noticiaSeleccionada.getTitulo()+"\n");
 							System.out.println(noticiaSeleccionada.getTexto());
 						}
