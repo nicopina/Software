@@ -12,10 +12,13 @@ public class SistemaNoticiasImpl {
 	private ArrayList<Canal> listaCanales;
 	private ArrayList<Noticia> listaNoticias;
 	private ArrayList<Usuario> listaUsuarios;
+	private Servidor server;
+	private Publisher publisher;
 	
 	public SistemaNoticiasImpl() {
 		listaCanales = new ArrayList<Canal>();
 		listaNoticias = new ArrayList<Noticia>();
+		server = new Servidor(listaCanales,listaUsuarios);
 		
 	}
 	
@@ -155,7 +158,8 @@ public class SistemaNoticiasImpl {
 
 		Noticia noticia = new Noticia(titulo,texto,fecha,canales);
 		
-		listaNoticias.add(noticia); //Se supone que esto lo "ve" el observador
+		publisher.publish(noticia, canales, server);
+		
 	}
 	
 	public ArrayList<Canal> mostrarCanales() {

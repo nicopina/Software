@@ -34,7 +34,6 @@ public class Servidor {
 				}
 			}
 		}
-		
 	}
 	
 	public void enviarNoticias(Noticia n, ListaCanales c) {
@@ -55,9 +54,6 @@ public class Servidor {
 					break;
 				}
 			}
-		}
-		
-		
-		
+		}	
 	}
 }
