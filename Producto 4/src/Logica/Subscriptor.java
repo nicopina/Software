@@ -18,5 +18,8 @@ public class Subscriptor {
 		noticiasEnCola.add(n);
 	}
 	
+	public Usuario getUsuario() {
+		return this.user;
+	}
 	
 }

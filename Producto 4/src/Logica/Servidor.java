@@ -56,4 +56,23 @@ public class Servidor {
 			}
 		}	
 	}
+	
+	public void agregarSubscriptor(Canal canal, Usuario usuario) {
+		
+		for (int i = 0; i < topics.size(); i++) {
+			Topic topic = topics.get(i);
+			if (topic.getCanal().equals(canal)) {
+				
+				
+				for (int j = 0; j < topic.getSubscriptores().size(); j++) {
+					Subscriptor sub = topic.getSubscriptores().get(j);
+					if (sub.getUsuario().equals(usuario)) {
+						topic.addSubscriptor(sub);
+						break;
+					}
+				}
+			}
+			break;
+		}
+	}
 }
