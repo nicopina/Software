@@ -37,7 +37,7 @@ public class SistemaNoticiasImpl {
 
 	}
 
-	public void verNoticias(ListaNoticias noticias, String nombre) {
+	public void verNoticias(String nombre) {
 		Usuario usuario = null;
 		for (int i = 0; i< listaUsuarios.size(); i++) {
 			if (nombre.equals(listaUsuarios.get(i).getNombre())) {
@@ -252,6 +252,24 @@ public class SistemaNoticiasImpl {
 	
 	public ArrayList<Canal> get_listaCanales(){
 		return listaCanales;
+	}
+	
+	public ArrayList<Usuario> getUsuarios(){
+		return this.listaUsuarios;
+	}
+	
+	public boolean agregarUsuario(String name, String pass) {
+		
+		for (int i = 0; i < listaUsuarios.size(); i++) {
+			Usuario a = listaUsuarios.get(i);
+			if (a.getNombre().equals(name)) {
+				return false;
+			}
+		}
+		
+		Usuario u = new Usuario(name, pass, false, false);
+		return true;
+		
 	}
 
 }

@@ -48,5 +48,21 @@ public class Usuario {
 	public ListaCanales getSuscripciones() {
 		return suscripciones;
 	}
+
+	/**
+	 * @param esAdmin the esAdmin to set
+	 */
+	public void setEsAdmin(Boolean esAdmin) {
+		this.esAdmin = esAdmin;
+	}
+
+	/**
+	 * @param puedeEscribir the puedeEscribir to set
+	 */
+	public void setPuedeEscribir(Boolean puedeEscribir) {
+		this.puedeEscribir = puedeEscribir;
+	}
+	
+	
 	
 }
