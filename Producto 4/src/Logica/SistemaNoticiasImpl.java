@@ -19,11 +19,17 @@ public class SistemaNoticiasImpl {
 		
 	}
 	public void OrdenarNoticias() {
-		for (int i = 0; i < listaNoticias.size(); i++) {
-			Noticia noticiaI = listaNoticias.get(i);
-			listafechas.add(noticiaI.getFecha2());
-			listaNoticias.sort(noticiaI.getFecha());
-		}
+	      for(int i = 2; i < listaNoticias.size(); i++) {
+	    	  for(int j = 0;j < listaNoticias.size()-i;j++) {
+		          if(listaNoticias.get(i).getFecha().compareTo(listaNoticias.get(j+1).getFecha())>0)
+		          {
+		            Noticia auxiliar = listaNoticias.get(j);
+		            listaNoticias.add(j,listaNoticias.get(j+1));
+		            listaNoticias.add(j+1,auxiliar);
+		          }   
+		        }
+		   }
+
 	}
 
 	public void verNoticias(ListaNoticias noticias) {
