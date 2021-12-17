@@ -1,6 +1,7 @@
 package Logica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Dominio.ListaNoticias;
 import Dominio.Noticia;
@@ -21,7 +22,8 @@ public class SistemaNoticiasImpl implements SistemaNoticias{
 		
 		System.out.println("Ingrese la opción de la operación que desee realizar:\n");
 		System.out.println("X. Ordenar cronológicamente\nY. Filtrar por tema");
-		String opcionEntrada = ""; //Falta scanner
+		Scanner escaner = new Scanner(System.in);
+		String opcionEntrada = escaner.next(); 
 		
 		if (opcionEntrada.equalsIgnoreCase("x")) {
 			//ordenar
@@ -38,6 +40,7 @@ public class SistemaNoticiasImpl implements SistemaNoticias{
 					int indice = Integer.parseInt(opcionEntrada);
 					if (indice >= 0 && indice < listaNoticias.size()) {
 						System.out.println("Abriendo noticia...");
+						System.out.println("---------------------------------");
 						Noticia noticiaSeleccionada = listaNoticias.get(indice);
 						System.out.println(noticiaSeleccionada.getTitulo()+"\n");
 						System.out.println(noticiaSeleccionada.getTexto());
