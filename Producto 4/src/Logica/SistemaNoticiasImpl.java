@@ -245,6 +245,7 @@ public class SistemaNoticiasImpl {
         }
         return noticiasFiltradas;
     }
+
 	
 	public ArrayList<Canal> get_listaCanales(){
 		return listaCanales;
