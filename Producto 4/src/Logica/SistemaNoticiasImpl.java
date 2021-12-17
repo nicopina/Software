@@ -12,13 +12,13 @@ public class SistemaNoticiasImpl {
 	private ArrayList<Canal> listaCanales;
 	private ArrayList<Noticia> listaNoticias;
 	private ArrayList<Usuario> listaUsuarios;
-	private Servidor server;
-	private Publisher publisher;
+	//private Servidor server;
+	//private Publisher publisher;
 	
 	public SistemaNoticiasImpl() {
 		listaCanales = new ArrayList<Canal>();
 		listaNoticias = new ArrayList<Noticia>();
-		server = new Servidor(listaCanales,listaUsuarios);
+		//server = new Servidor(listaCanales,listaUsuarios);
 		
 	}
 	
@@ -158,7 +158,7 @@ public class SistemaNoticiasImpl {
 
 		Noticia noticia = new Noticia(titulo,texto,fecha,canales);
 		
-		publisher.publish(noticia, canales, server);
+		//publisher.publish(noticia, canales, server);
 		
 	}
 	
@@ -249,7 +249,6 @@ public class SistemaNoticiasImpl {
         }
         return noticiasFiltradas;
     }
-
 	
 	public ArrayList<Canal> get_listaCanales(){
 		return listaCanales;

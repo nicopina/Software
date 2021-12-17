@@ -48,7 +48,6 @@ class test_filtrar_noticias {
 		ArrayList<Noticia> noticiasFiltradasEsperadas= new ArrayList<Noticia>();
 		noticiasFiltradasEsperadas.add(n2);
 
-		
 		SistemaNoticiasImpl sn = new SistemaNoticiasImpl();
 		
 		ArrayList<Noticia> noticiasFiltradasOriginal = sn.filtrarNoticia(listaNoticias, canalesUsuario);
