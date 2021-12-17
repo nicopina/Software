@@ -8,9 +8,9 @@ public class Noticia {
 	private String texto;
 	private Date fecha;
 	private String fecha2;
-	private Canal[] canales;
+	private ListaCanales canales;
 	
-	public Noticia(String titulo, String texto, Date fecha, Canal[] canales,String fecha2) {
+	public Noticia(String titulo, String texto, Date fecha, ListaCanales canales,String fecha2) {
 		this.titulo = titulo;
 		this.texto = texto;
 		this.fecha = fecha;
