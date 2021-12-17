@@ -25,6 +25,40 @@ public class SistemaNoticiasImpl {
 			listaNoticias.sort(noticiaI.getFecha());
 		}
 	}
+	
+	public ArrayList<Noticia> filtrarNoticia(ArrayList<Noticia> listaNoticias, ListaCanales canales) {
+		
+		
+		ArrayList<Canal> listaCanales = canales.getCanales();
+		
+		System.out.println("------Canales-----");
+		for (int i = 0; i < listaCanales.size(); i++) {
+			Canal canalI = listaCanales.get(i);
+			System.out.println(i + " "+ canalI.getNombre());
+		}
+		
+		Integer opcionEntrada;
+		do {
+			System.out.println("Ingrese el canal a filtrar:\n");
+			
+			Scanner leer = new Scanner(System.in);
+			opcionEntrada = leer.nextInt();
+		}while((opcionEntrada < 0) | (opcionEntrada <  listaCanales.size()));
+		
+		ArrayList<Noticia> noticiasFiltradas = new ArrayList<>();
+		
+		for (int i = 0; i < listaNoticias.size(); i++) {
+			ArrayList<Canal> canales = listaNoticias.get(i).getCanales();
+			for( int e = 0; e < canales.size();e++) {
+				if(canales.get(e).getNombre().equals(listaCanales.get(opcionEntrada))){
+					noticiasFiltradas.add(listaNoticias.get(i));
+				}
+			}
+					
+		}
+		return noticiasFiltradas;
+		
+	}
 
 	public void verNoticias(ListaNoticias noticias,ListaCanales canales) {
 		ArrayList<Noticia> listaNoticias = noticias.getNoticias();
@@ -70,37 +104,5 @@ public class SistemaNoticiasImpl {
 			}
 		}
 	}
-	public ArrayList<Noticia> filtrarNoticia(ArrayList<Noticia> listaNoticias, ListaCanales canales) {
-		
-		
-		ArrayList<Canal> listaCanales = canales.getCanales();
-		
-		System.out.println("------Canales-----");
-		for (int i = 0; i < listaCanales.size(); i++) {
-			Canal canalI = listaCanales.get(i);
-			System.out.println(i + " "+ canalI.getNombre());
-		}
-		
-		Integer opcionEntrada;
-		do {
-			System.out.println("Ingrese el canal a filtrar:\n");
-			
-			Scanner leer = new Scanner(System.in);
-			opcionEntrada = leer.nextInt();
-		}while((opcionEntrada < 0) | (opcionEntrada <  listaCanales.size()));
-		
-		ArrayList<Noticia> noticiasFiltradas = new ArrayList<>();
-		
-		for (int i = 0; i < listaNoticias.size(); i++) {
-			ArrayList<Canal> canales = listaNoticias.get(i).getCanales();
-			for( int e = 0; e < canales.size();e++) {
-				if(canales.get(e).getNombre().equals(listaCanales.get(opcionEntrada))){
-					noticiasFiltradas.add(listaNoticias.get(i));
-				}
-			}
-					
-		}
-		return noticiasFiltradas;
-		
-	}
+	
 }
