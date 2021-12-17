@@ -11,7 +11,6 @@ public class test_enviar_noticia {
 	
 	private  SistemaNoticiasImpl enviarNoticia = new SistemaNoticiasImpl();
 	
-	private 
 	
 
 }
