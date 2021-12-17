@@ -19,17 +19,18 @@ public class SistemaNoticiasImpl {
 		
 	}
 	
-	public void OrdenarNoticias() {
-	      for(int i = 2; i < listaNoticias.size(); i++) {
-	    	  for(int j = 0;j < listaNoticias.size()-i;j++) {
-		          if(listaNoticias.get(i).getFecha().compareTo(listaNoticias.get(j+1).getFecha())>0)
+	public ArrayList<Noticia> OrdenarNoticias(ArrayList<Noticia> listaNoticiass) {
+	      for(int i = 2; i < listaNoticiass.size(); i++) {
+	    	  for(int j = 0;j < listaNoticiass.size()-i;j++) {
+		          if(listaNoticiass.get(i).getFecha().compareTo(listaNoticiass.get(j+1).getFecha())>0)
 		          {
-		            Noticia auxiliar = listaNoticias.get(j);
-		            listaNoticias.add(j,listaNoticias.get(j+1));
-		            listaNoticias.add(j+1,auxiliar);//s
+		            Noticia auxiliar = listaNoticiass.get(j);
+		            listaNoticiass.add(j,listaNoticiass.get(j+1));
+		            listaNoticiass.add(j+1,auxiliar);//s
 		          }   
 		        }
 		   }
+	      return listaNoticiass;
 
 	}
 
@@ -50,10 +51,16 @@ public class SistemaNoticiasImpl {
 		}
 		ListaCanales canalesUsuario = usuario.getSuscripciones();
 		
+		
+		ArrayList<Noticia> noticiasMostrar = new ArrayList<Noticia>();
+		for (int i = 0; i < listaNoticiasUsuario.size(); i++) {
+			noticiasMostrar.add(listaNoticiasUsuario.get(i));
+		}
+		
 		while (true) {
 			System.out.println("------Ver noticias-----");
-			for (int i = 0; i < listaNoticiasUsuario.size(); i++) {
-				Noticia noticiaI = listaNoticiasUsuario.get(i);
+			for (int i = 0; i < noticiasMostrar.size(); i++) {
+				Noticia noticiaI = noticiasMostrar.get(i);
 				System.out.println(i + " "+ noticiaI.getTitulo());
 			}
 			
@@ -63,13 +70,13 @@ public class SistemaNoticiasImpl {
 			String opcionEntrada = escaner.next(); 
 			
 			if (opcionEntrada.equalsIgnoreCase("x")) {
-				OrdenarNoticias();
+				noticiasMostrar = OrdenarNoticias(noticiasMostrar);
 			}
 			
 			else {
 				if (opcionEntrada.equalsIgnoreCase("y")) {
 					
-					ArrayList<Noticia> noticiasFiltradas = filtrarNoticia(listaNoticias, canalesUsuario);
+					noticiasMostrar = filtrarNoticia(noticiasMostrar, canalesUsuario);
 				}
 				
 				else {
