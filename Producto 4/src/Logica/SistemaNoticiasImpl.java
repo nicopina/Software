@@ -158,12 +158,14 @@ public class SistemaNoticiasImpl {
 		listaNoticias.add(noticia); //Se supone que esto lo "ve" el observador
 	}
 	
-	public void mostrarCanales() {
+	public ArrayList<Canal> mostrarCanales() {
 		System.out.println("-----------Lista canales----------");
 		for (int i = 0; i < listaCanales.size(); i++) {
 			Canal canalI = listaCanales.get(i);
 			System.out.println(i+".- "+ canalI.getNombre());
 		}
+		return listaCanales;
+		
 	}
 	
 	public void suscribirseCanal(String nombre) {
@@ -243,5 +245,9 @@ public class SistemaNoticiasImpl {
         }
         return noticiasFiltradas;
     }
+	
+	public ArrayList<Canal> get_listaCanales(){
+		return listaCanales;
+	}
 
 }
