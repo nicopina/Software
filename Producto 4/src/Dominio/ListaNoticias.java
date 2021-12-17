@@ -12,4 +12,5 @@ public class ListaNoticias {
 	public ArrayList<Noticia> getNoticias(){
 		return noticias;
 	}
+	
 }

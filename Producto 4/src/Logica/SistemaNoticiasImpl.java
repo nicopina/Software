@@ -1,18 +1,28 @@
 package Logica;
 import Dominio.*;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 public class SistemaNoticiasImpl {
 	private ArrayList<Canal> listaCanales;
 	private ArrayList<Noticia> listaNoticias;
+	private ArrayList<String> listafechas;
 	
 	public SistemaNoticiasImpl() {
 		listaCanales = new ArrayList<Canal>();
 		listaNoticias = new ArrayList<Noticia>();
+		
 	}
 	public void OrdenarNoticias() {
-		for(int i =0;i< listaNoticias.size();i++) {
-			
+		for (int i = 0; i < listaNoticias.size(); i++) {
+			Noticia noticiaI = listaNoticias.get(i);
+			listafechas.add(noticiaI.getFecha2());
+			listaNoticias.sort(noticiaI.getFecha());
 		}
 	}
 
