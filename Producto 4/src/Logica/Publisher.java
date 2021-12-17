@@ -2,6 +2,7 @@ package Logica;
 
 import java.util.ArrayList;
 import Dominio.Canal;
+import Dominio.ListaCanales;
 import Dominio.Noticia;
 
 public class Publisher {
@@ -12,7 +13,8 @@ public class Publisher {
 		this.canal = c;
 	}
 	
-	public void publish(Noticia n, ArrayList<Noticia> noticiasSistema) {
-		noticiasSistema.add(n);
+	public void publish(Noticia n, ListaCanales c,  Servidor server) {
+		server.enviarNoticias(n, c);
+		
 	}
 }
