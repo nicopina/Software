@@ -64,7 +64,7 @@ public class SistemaNoticiasImpl {
 				System.out.println(i + " "+ noticiaI.getTitulo());
 			}
 			
-			System.out.println("Ingrese la opcion de la operacion que desee realizar,\nPara ver alguna noticia ingrese el número asociado a ella:");
+			System.out.println("Ingrese la opcion de la operacion que desee realizar,\nPara ver alguna noticia ingrese el nï¿½mero asociado a ella:");
 			System.out.println("X. Ordenar cronologicamente\nY. Filtrar por tema\n-1. Para salir");
 			Scanner escaner = new Scanner(System.in);
 			String opcionEntrada = escaner.next(); 
@@ -130,7 +130,7 @@ public class SistemaNoticiasImpl {
 		
 		
 		while(true) {
-			System.out.println("Ingrese el número de 1 canal para aniadir o -1 para dejar de aniadir canales: ");
+			System.out.println("Ingrese el nï¿½mero de 1 canal para aniadir o -1 para dejar de aniadir canales: ");
 			String entradaCanal = escanerDos.next();
 			try {
 				int canalAnadido = Integer.parseInt(entradaCanal);
@@ -207,39 +207,48 @@ public class SistemaNoticiasImpl {
 	
 	public ArrayList<Noticia> filtrarNoticia(ArrayList<Noticia> listaNoticias, ListaCanales canales) {
 
-
+		// Se obtiene la lista de canales
         ArrayList<Canal> listaCanales = canales.getCanales();
 
+        // Muestra la lista de canales
         System.out.println("------Canales-----");
         for (int i = 0; i < listaCanales.size(); i++) {
             Canal canalI = listaCanales.get(i);
             System.out.println(i + " "+ canalI.getNombre());
         }
-
+        
+        // El usuario elige el canal
         Integer opcionEntrada;
         do {
             System.out.println("Ingrese el canal a filtrar:\n");
 
             Scanner leer = new Scanner(System.in);
             opcionEntrada = leer.nextInt();
-        }while((opcionEntrada < 0) | (opcionEntrada <  listaCanales.size()));
+        }while((opcionEntrada < 0) || (opcionEntrada >  (listaCanales.size()-1)));
+        
+        // Se crea la nueva lista de noticias filtradas
+        ArrayList<Noticia> noticiasFiltradas = new ArrayList<Noticia>();
 
-        ArrayList<Noticia> noticiasFiltradas = new ArrayList<>();
-
-        for (int i = 0; i < listaNoticias.size(); i++) {
+        // Por cada noticia, si el canal seleccionado anteriormente esta en su lista, se guarda la noticia en la lista de noticias filtradas
+        
+        for (int i = 0; i < listaNoticias.size(); i++) {//recorre todas las noticias
         	ListaCanales listaCanales1 = listaNoticias.get(i).getCanales();
-            ArrayList<Canal> canales1 = listaCanales1.getCanales();
-            for( int e = 0; e < canales1.size();e++) {
-                if(canales1.get(e).getNombre().equals(listaCanales.get(opcionEntrada))){
+            ArrayList<Canal> canales1 = listaCanales1.getCanales();//se obtienen los canales asociados a esa noticia
+            
+            for( int e = 0; e < canales1.size();e++) {// recorre los canales de la noticia
+                
+            	if(canales1.get(e).getNombre().equals(listaCanales.get(opcionEntrada).getNombre())){// si el nombre del 
                     noticiasFiltradas.add(listaNoticias.get(i));
-                    break;
                 }
             }
 
         }
         return noticiasFiltradas;
     }
-	
 
+	
+	public ArrayList<Canal> get_listaCanales(){
+		return listaCanales;
+	}
 
 }
