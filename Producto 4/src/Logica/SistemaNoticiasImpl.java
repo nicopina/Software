@@ -11,13 +11,14 @@ import java.util.Scanner;
 public class SistemaNoticiasImpl {
 	private ArrayList<Canal> listaCanales;
 	private ArrayList<Noticia> listaNoticias;
-	private ArrayList<String> listafechas;
+	private ArrayList<Usuario> listaUsuarios;
 	
 	public SistemaNoticiasImpl() {
 		listaCanales = new ArrayList<Canal>();
 		listaNoticias = new ArrayList<Noticia>();
 		
 	}
+	
 	public void OrdenarNoticias() {
 	      for(int i = 2; i < listaNoticias.size(); i++) {
 	    	  for(int j = 0;j < listaNoticias.size()-i;j++) {
@@ -32,11 +33,22 @@ public class SistemaNoticiasImpl {
 
 	}
 
-	public void verNoticias(ListaNoticias noticias) {
-		ArrayList<Noticia> listaNoticias = noticias.getNoticias();
+	public void verNoticias(ListaNoticias noticias, String nombre) {
+		Usuario usuario = null;
+		for (int i = 0; i< listaUsuarios.size(); i++) {
+			if (nombre.equals(listaUsuarios.get(i).getNombre())) {
+				usuario = listaUsuarios.get(i);
+				break;
+			}
+		}
+		
+		ListaNoticias noticiasUsuarioAux = usuario.getNoticiasNoVistas();
+		ListaCanales canalesUsuario = usuario.getSuscripciones();
+		
+		ArrayList<Noticia> listaNoticiasUsuario = noticiasUsuarioAux.getNoticias();
 		System.out.println("------Ver noticias-----");
-		for (int i = 0; i < listaNoticias.size(); i++) {
-			Noticia noticiaI = listaNoticias.get(i);
+		for (int i = 0; i < listaNoticiasUsuario.size(); i++) {
+			Noticia noticiaI = listaNoticiasUsuario.get(i);
 			System.out.println(i + " "+ noticiaI.getTitulo());
 		}
 		
@@ -46,22 +58,23 @@ public class SistemaNoticiasImpl {
 		String opcionEntrada = escaner.next(); 
 		
 		if (opcionEntrada.equalsIgnoreCase("x")) {
-			//ordenar
+			OrdenarNoticias();
 		}
 		
 		else {
 			if (opcionEntrada.equalsIgnoreCase("y")) {
-				//filtrar tema
+				
+				ArrayList<Noticia> noticiasFiltradas = filtrarNoticia(listaNoticias, canalesUsuario);
 			}
 			
 			else {
 				//Vemos si es que la entrada es un �ndice v�lido de alguna noticia.
 				try {
 					int indice = Integer.parseInt(opcionEntrada);
-					if (indice >= 0 && indice < listaNoticias.size()) {
+					if (indice >= 0 && indice < listaNoticiasUsuario.size()) {
 						System.out.println("Abriendo noticia...");
 						System.out.println("---------------------------------");
-						Noticia noticiaSeleccionada = listaNoticias.get(indice);
+						Noticia noticiaSeleccionada = listaNoticiasUsuario.get(indice);
 						System.out.println(noticiaSeleccionada.getTitulo()+"\n");
 						System.out.println(noticiaSeleccionada.getTexto());
 					}
@@ -171,4 +184,40 @@ public class SistemaNoticiasImpl {
 			System.out.println("Error: Opcion invalida");
 		}
 	}
+	
+	public ArrayList<Noticia> filtrarNoticia(ArrayList<Noticia> listaNoticias, ListaCanales canales) {
+
+
+        ArrayList<Canal> listaCanales = canales.getCanales();
+
+        System.out.println("------Canales-----");
+        for (int i = 0; i < listaCanales.size(); i++) {
+            Canal canalI = listaCanales.get(i);
+            System.out.println(i + " "+ canalI.getNombre());
+        }
+
+        Integer opcionEntrada;
+        do {
+            System.out.println("Ingrese el canal a filtrar:\n");
+
+            Scanner leer = new Scanner(System.in);
+            opcionEntrada = leer.nextInt();
+        }while((opcionEntrada < 0) | (opcionEntrada <  listaCanales.size()));
+
+        ArrayList<Noticia> noticiasFiltradas = new ArrayList<>();
+
+        for (int i = 0; i < listaNoticias.size(); i++) {
+        	ListaCanales listaCanales1 = listaNoticias.get(i).getCanales();
+            ArrayList<Canal> canales1 = listaCanales1.getCanales();
+            for( int e = 0; e < canales1.size();e++) {
+                if(canales1.get(e).getNombre().equals(listaCanales.get(opcionEntrada))){
+                    noticiasFiltradas.add(listaNoticias.get(i));
+                    break;
+                }
+            }
+
+        }
+        return noticiasFiltradas;
+    }
+
 }

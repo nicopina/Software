@@ -1,5 +1,4 @@
 package Dominio;
-import java.util.Comparator;
 import java.util.Date;
 
 public class Noticia {
@@ -7,15 +6,14 @@ public class Noticia {
 	private String titulo;
 	private String texto;
 	private Date fecha;
-	private String fecha2;
-	private ListaCanales canales;
+	private ListaCanales lc;
 	
-	public Noticia(String titulo, String texto, Date fecha, ListaCanales canales,String fecha2) {
+	public Noticia(String titulo, String texto, Date fecha, ListaCanales canales) {
 		this.titulo = titulo;
 		this.texto = texto;
 		this.fecha = fecha;
-		this.canales = canales;
-		this.fecha2 = fecha2;
+		this.lc = canales;
+
 	}
 
 	/**
@@ -42,15 +40,11 @@ public class Noticia {
 	/**
 	 * @return the canales
 	 */
-	public Canal[] getCanales() {
-		return canales;
+	public ListaCanales getCanales() {
+		return lc;
 	}
 
-	public String getFecha2() {
-		return fecha2;
-	}
 
-	public void setFecha2(String fecha2) {
-		this.fecha2 = fecha2;
-	}
+
+
 }
