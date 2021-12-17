@@ -6,11 +6,14 @@ public class Noticia {
 	private String titulo;
 	private String texto;
 	private Date fecha;
+	private Canal[] canales;
 	
-	public Noticia(String titulo, String texto, Date fecha) {
+	public Noticia(String titulo, String texto, Date fecha, Canal[] canales) {
 		this.titulo = titulo;
 		this.texto = texto;
 		this.fecha = fecha;
+		this.canales = canales;
+		
 	}
 
 	/**
@@ -33,6 +36,15 @@ public class Noticia {
 	public Date getFecha() {
 		return fecha;
 	}
+
+	/**
+	 * @return the canales
+	 */
+	public Canal[] getCanales() {
+		return canales;
+	}
+	
+	
 	
 	
 	
