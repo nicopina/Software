@@ -25,7 +25,7 @@ public class SistemaNoticiasImpl {
 		          {
 		            Noticia auxiliar = listaNoticias.get(j);
 		            listaNoticias.add(j,listaNoticias.get(j+1));
-		            listaNoticias.add(j+1,auxiliar);
+		            listaNoticias.add(j+1,auxiliar);//s
 		          }   
 		        }
 		   }
