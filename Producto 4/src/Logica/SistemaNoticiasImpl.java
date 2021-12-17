@@ -1,6 +1,7 @@
 package Logica;
 import Dominio.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 public class SistemaNoticiasImpl {
 	private ArrayList<Canal> listaCanales;
@@ -59,5 +60,55 @@ public class SistemaNoticiasImpl {
 				}
 			}
 		}
+	}
+	
+	public void enviarNoticia() {
+		Date fecha = new Date(); //Obtiene la fecha de ahora.
+		
+		Scanner escanerDos = new Scanner(System.in);
+		
+		System.out.println("-----Creador de noticias-----\nIngrese el titulo: ");
+		String titulo = escanerDos.next();
+		System.out.println("Ingrese el texto de la noticia: ");
+		String texto = escanerDos.next();
+		System.out.println("Seleccione los canales de la noticia: ");
+		
+		for (int i = 0; i < listaCanales.size(); i++) {
+			Canal canalI = listaCanales.get(i);
+			System.out.println(i+".- "+ canalI.getNombre());
+		}
+		
+		ListaCanales canales = new ListaCanales();
+		ArrayList<Integer> canalesAnadir = new ArrayList<Integer>();
+		ArrayList<Canal> nombresCanales = canales.getCanales();
+		
+		
+		while(true) {
+			System.out.println("Ingrese el número de 1 canal para aniadir o -1 para dejar de aniadir canales: ");
+			String entradaCanal = escanerDos.next();
+			try {
+				int canalAnadido = Integer.parseInt(entradaCanal);
+				
+				if (canalAnadido >= 0 && canalAnadido < listaCanales.size() && !canalesAnadir.contains(canalAnadido)) {
+					canalesAnadir.add(canalAnadido);
+					nombresCanales.add(listaCanales.get(canalAnadido));
+				}
+				else {
+					if (canalAnadido == -1) {
+						break;
+					}
+					else{
+						System.out.println("Error: Opcion invalida.");
+					}
+				}
+			}
+			catch(Exception e) {
+				System.out.println("Error: Opcion invalida.");
+			}
+		}
+
+		Noticia noticia = new Noticia(titulo,texto,fecha,canales);
+		
+		listaNoticias.add(noticia); //Se supone que esto lo "ve" el observador
 	}
 }

@@ -6,9 +6,9 @@ public class Noticia {
 	private String titulo;
 	private String texto;
 	private Date fecha;
-	private Canal[] canales;
+	private ListaCanales canales;
 	
-	public Noticia(String titulo, String texto, Date fecha, Canal[] canales) {
+	public Noticia(String titulo, String texto, Date fecha, ListaCanales canales) {
 		this.titulo = titulo;
 		this.texto = texto;
 		this.fecha = fecha;
